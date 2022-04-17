@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+</head>
+<body>
+    <div id="snackbar"></div>
+    <% if (user) { %>
+        <div class="cart-modal" id="user-cart">
+            <div class="modal-content">
+                <h2>Your Cart</h2>
+                <span class="close-cart">&times;</span>
+                <% if (cart.cartItems.length === 0) { %>
+                    <p>There are no items in your cart</p>
+                <% } %>
+                <% if (cart.cartItems.length > 0) { %>
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                        <% cart.cartItems.forEach(cartItem => { %>
+                            <tr>
+                                <td>
+                                    <%= cartItem.product.name %>
+                                </td>
+                                <td>
+                                    <%= cartItem.quantity %>
+                                </td>
+                                <td>
+                                    <form action="/cart?_method=DELETE" method="post">
+                                        <input type="hidden" name="id" value="<%= cartItem.id %>">
+                                        <button type="submit" style="background: none; border: none;"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </td> 
+                            </tr>
+                        <% }) %>
+                    </table>
+                <% } %>
+            </div>
+        </div>
+    <% } %> 
+    <header style="padding: 0 10%;">
+        <% if (user) { %>
+            <%- include('partials/index-auth-header') %>
+        <% } %>
+        <% if (!user) { %>
+            <%- include('partials/header') %>
+        <% } %>
+    </header>
+    <%- include('partials/mobile-nav') %> 
+    <section id="home">
+        <div class="container">
+            <h2 class="hero-heading">Welcome Message</h2>
+            <p class="hero-subtext">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem explicabo placeat
+                eligendi deserunt.</p>
+        </div>
+    </section>
+    <section id="products">
+        <h2 class="section-heading">Products</h2>
+        <div class="flex-container">
+            <% products.forEach(product => { %>
+                <div class="card">
+                    <div class="card-image">
+                       <img src="<%= product.imageUrl %> " alt="product-image">
+                    </div>
+                    <div>
+                        <% if (user) { %>
+                            <form action="/cart" method="post" class="cart-modal">
+                                <div class="modal-content">
+                                    <div class="header">
+                                        <h2>How many bottles would you like?</h2>
+                                        <span class="close">&times;</span>
+                                    </div>
+                                    <div>
+                                        <button class="operation minus" type="button"><i class="fa-solid fa-minus"></i></button>
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                        <input type="number" name="quantity" style="text-align: center">
+                                        <button class="operation plus" type="button"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                    <input type="submit" value="Submit">
+                                </div>
+                            </form>
+                            <button class="event">Add to Cart</button>
+                        <% } %>
+                        <% if (!user) { %>
+                            <a href="/auth/signin" class="event">Add to Cart</a>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+            
+        </div>
+    </section>
+    <section id="why">
+        <h2 class="section-heading">why katies</h2>
+        <div class="flex-container">
+            <div class="reasons">
+                <div class="reasons-img">
+                    <a href="">
+                        <img src="/assets/icons/healthy.png" alt="">
+                    </a>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui deleniti perferendis a nulla natus,
+                    tenetur corporis labore hic provident alias consequatur blanditiis iusto ipsam laborum sed nostrum
+                    cupiditate? Pariatur, atque.</p>
+            </div>
+            <div class="reasons">
+                <div class="reasons-img">
+                    <img src="/assets/icons/delicious.png" alt="">
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui deleniti perferendis a nulla natus,
+                    tenetur corporis labore hic provident alias consequatur blanditiis iusto ipsam laborum sed nostrum
+                    cupiditate? Pariatur, atque.</p>
+            </div>
+            <div class="reasons">
+                <div class="reasons-img">
+                    <img src="/assets/icons/appraisal.png" alt="">
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui deleniti perferendis a nulla natus,
+                    tenetur corporis labore hic provident alias consequatur blanditiis iusto ipsam laborum sed nostrum
+                    cupiditate? Pariatur, atque.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2 class="section-heading">Lets Get in Tocu</h2>
+        <div class="flex-container">
+            <div>
+                <form action="" method="post" id="contact-form">
+                    <input type="text" required>
+                    <input type="email" name="" id="" required>
+                    <textarea name="" id="" cols="30" rows="10" required></textarea>
+                    <input type="submit" value="Send">
+                </form>
+            </div>
+            <div style="margin-top: 15px;">
+                <p><i class="fa-solid fa-envelope"></i>Location</p>
+                <p><i class="fa-solid fa-phone"></i>0268174493</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <%- include('partials/footer') %> 
+    </footer>
+    <script>
+        let message = '<%= error %>' || '<%= success %>' || '<%= order %>' || '<%= serverError %>' || '<%= signoutMessage %>' || '<%= deletedItem %>';
+        if(message) {
+            const toast = document.getElementById('snackbar');
+            toast.className = 'show';
+            toast.innerHTML = message;
+            setTimeout(function() {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

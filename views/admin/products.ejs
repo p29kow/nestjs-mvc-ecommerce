@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/admin-head') %>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <%- include('../partials/admin-nav') %>
+            <div class="container-fluid page-body-wrapper">
+                <%- include('../partials/side-nav') %>
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="col-12 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <%= title %>
+                                        </h4>
+                                        <% products.forEach(product=> { %>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Image</th>
+                                                        <th scope="col" colspan="2">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <%= product.name %>
+                                                        </th>
+                                                        <td>
+                                                            <%= product.price %>
+                                                        </td>
+                                                        <td><img src="<%= product.imageUrl %> " alt=""></td>
+                                                        <td><a href="/products/edit-product/<%= product.id %>">Edit</a>
+                                                        </td>
+                                                        <td>
+                                                            <form action="/products/<%= product.id %>?_method=DELETE"
+                                                                method="post">
+                                                                <button type="submit">Delete</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <% }) %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="footer">
+                            <%- include('../partials/admin-footer') %>
+                        </footer>
+                    </div>
+            </div>
+    </div>
+</body>
+
+</html>

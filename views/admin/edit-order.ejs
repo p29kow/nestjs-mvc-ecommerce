@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/admin-head') %> 
+  </head>
+  <body>
+    <div class="container-scroller">
+      <%- include('../partials/admin-nav') %> 
+      <div class="container-fluid page-body-wrapper">
+        <%- include('../partials/side-nav') %> 
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title"><%= title %> </h4>
+                    <form action="/products/<%= order.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+                      <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" id="address" name="address" value="<%= order.address %>">
+                      </div>
+                      <div class="form-group">
+                        <label>Contact</label>
+                        <input type="text" class="form-control" id="contact" name="contact" value="<%= order.contact %>">
+                      </div>
+                      <div class="form-group">
+                        <label>Payment Status</label>
+                        <select name="paymentStatus" class="form-control">
+                          <option>PAID</option>
+                          <option>UNPAID</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Order Status</label>
+                        <select name="status" class="form-control">
+                          <option>PENDING</option>
+                          <option>PROCESSING</option>
+                          <option>DELIVERED</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <footer class="footer">
+            <%- include('../partials/admin-footer') %> 
+          </footer>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

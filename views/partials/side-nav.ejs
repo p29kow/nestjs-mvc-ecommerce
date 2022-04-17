@@ -1,0 +1,47 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin">
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories/create-category">
+          <span class="menu-title">Create Category</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/create-product">
+          <span class="menu-title">Create Product</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="pages/tables/basic-table.html">
+          <span class="menu-title">Categories</span>
+          <i class="mdi mdi-table-large menu-icon"></i>
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/products">
+          <span class="menu-title">Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/orders-being-processed">
+          <span class="menu-title">Orders Being Processed</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/delivered-orders">
+          <span class="menu-title">Past Orders</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <form action="/auth/signout" method="post">
+          <a class="nav-link" onclick="this.parentNode.submit();">
+            <span class="menu-title">Sign Out</span>
+          </a>
+        </form>
+      </li>
+    </ul>
+  </nav>

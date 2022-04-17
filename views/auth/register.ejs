@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <header style="padding: 0 10%;">
+        <% if (user) { %>
+            <%- include('../partials/auth-header') %>
+        <% } %>
+        <% if (!user) { %>
+            <%- include('../partials/header') %>
+        <% } %>
+    </header>
+    <%- include('../partials/mobile-nav') %> 
+    <section id="signin">
+        <div class="container">
+            <h2 class="section-heading">
+                <%= title %>
+            </h2>
+        </div>
+        <div class="container">
+            <form action="/auth/register" method="post" id="signin">
+                <input type="text" name="fullName" id="fullName" placeholder="Full Name" required>
+                <div class="error">
+                    <% if (duplicateEmail) { %>
+                        <%= duplicateEmail %> 
+                        <% } %>
+                </div>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <select name="userRole" id="">
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="REGULAR">REGULAR</option>
+                </select>
+                <input type="text" name="contact" id="contact" placeholder="Contact" required>
+                <input type="text" name="address" id="address" placeholder="Address" required>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="form-footer">
+                <p>Already have an account?? <i><a href="/auth/signin">Sign In</a></i></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<a class="brand">Katie's</a>
+<a href="#" class="toggle-button"><i class="fa-solid fa-bars"></i></a>
+<nav>
+    <div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#products">Products</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+<ul class="nav-icons">
+    <li class="dropdown"><a href="javascript:void(0)" class="dropbtn"><i class="fa-solid fa-user"></i></a>
+        <div class="dropdown-content">
+            <a><%= user.fullName %> </a>
+            <form action="/auth/signout" method="post">
+                <a onclick="this.parentNode.submit();">Signout</a>
+            </form>
+        </div>
+    </li>
+    <li class="dropdown"><a href="javascript:void(0)" class="dropbtn"><i class="fa-solid fa-cart-shopping"></i></a>
+        <div class="dropdown-content">
+            <a id="show-cart">My Cart</a>
+            <% if (cart.cartItems.length > 0) { %>
+                <a href="/cart/checkout">Checkout</a>
+            <% } %>
+        </div>
+    </li>
+</ul>

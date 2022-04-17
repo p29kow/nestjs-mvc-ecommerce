@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <div id="snackbar"></div>
+    <header style="padding: 0 10%;">
+        <% if (user) { %>
+            <%- include('../partials/auth-header') %>
+        <% } %>
+        <% if (!user) { %>
+            <%- include('../partials/header') %>
+        <% } %>
+    </header>
+    <%- include('../partials/mobile-nav') %> 
+    <section id="signin" style="margin: auto 0;">
+        <div class="container">
+            <h2 class="section-heading">
+                <%= title %>
+            </h2>
+        </div>
+        <div class="container">
+            <form id="signin" action="/auth/signin" method="post">
+                <div class="error">
+                    <% if (message) { %>
+                        <%= message %> 
+                        <% } %>
+                </div>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="form-footer">
+                <p>Don't have an account?? <i><a href="/auth/register">Register</a></i></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+    <script>
+        let message = '<%= registrationSuccess %>';
+        if(message) {
+            const toast = document.getElementById('snackbar');
+            toast.className = 'show';
+            toast.innerHTML = message;
+            setTimeout(function() {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
