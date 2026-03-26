@@ -1,3 +1,6 @@
+## My First Ever E-commerce Project
+It brings back so many memories because it shows where I started and how far I have come as a developer. It has been such an interesting journey up until this point.
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
